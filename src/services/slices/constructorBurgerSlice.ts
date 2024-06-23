@@ -1,5 +1,5 @@
 import { TIngredient, TConstructorIngredient } from '@utils-types';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type ConstructorBurgerState = {
   constructorItems: {
@@ -19,13 +19,17 @@ export const constructorBurgerSlice = createSlice({
   name: 'constructorBurger',
   initialState,
   reducers: {
-    addIngredient: (state, action) => {
-      const ingredient = { ...action.payload, id: crypto.randomUUID() };
-      if (ingredient.type === 'bun') {
-        state.constructorItems.bun = ingredient;
-      } else {
-        state.constructorItems.ingredients.push(ingredient);
-      }
+    addIngredient: {
+      reducer: (state, { payload }: PayloadAction<TConstructorIngredient>) => {
+        if (payload.type === 'bun') {
+          state.constructorItems.bun = payload;
+        } else {
+          state.constructorItems.ingredients.push(payload);
+        }
+      },
+      prepare: (ingredient: TIngredient) => ({
+        payload: { ...ingredient, id: crypto.randomUUID() }
+      })
     },
     deleteIngredient: (state, action) => {
       state.constructorItems.ingredients.splice(action.payload, 1);

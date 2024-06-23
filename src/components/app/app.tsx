@@ -11,7 +11,7 @@ import {
 } from '@pages';
 import '../../index.css';
 import styles from './app.module.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { OrderInfo } from '@components';
 import { Modal } from '../../components/modal/modal';
 import { IngredientDetails } from '@components';
@@ -26,6 +26,7 @@ import { useDispatch } from '../../services/store';
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(checkUserAuth()).finally(() => dispatch(authChecked()));
@@ -37,7 +38,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AppHeader />
-      <Routes>
+      <Routes location={location.state?.background || location}>
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
@@ -102,34 +103,37 @@ const App = () => {
         </Route>
         <Route path='*' element={<NotFound404 />} />
       </Routes>
-      <Routes>
-        <Route
-          path='/ingredients/:id'
-          element={
-            <Modal title='Информация об ингредиентах' onClose={closeModal}>
-              <IngredientDetails />
-            </Modal>
-          }
-        />
-        <Route
-          path='/profile/orders/:number'
-          element={
-            <Protected>
-              <Modal title='Информация о заказе' onClose={closeModal}>
+
+      {location.state?.background && (
+        <Routes>
+          <Route
+            path='/ingredients/:id'
+            element={
+              <Modal title='Информация об ингредиентах' onClose={closeModal}>
+                <IngredientDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path='/profile/orders/:number'
+            element={
+              <Protected>
+                <Modal title='Информация о заказе' onClose={closeModal}>
+                  <OrderInfo />
+                </Modal>
+              </Protected>
+            }
+          />
+          <Route
+            path='/feed/:number'
+            element={
+              <Modal title='Детали заказа' onClose={closeModal}>
                 <OrderInfo />
               </Modal>
-            </Protected>
-          }
-        />
-        <Route
-          path='/feed/:number'
-          element={
-            <Modal title='Детали заказа' onClose={closeModal}>
-              <OrderInfo />
-            </Modal>
-          }
-        />
-      </Routes>
+            }
+          />
+        </Routes>
+      )}
     </div>
   );
 };
