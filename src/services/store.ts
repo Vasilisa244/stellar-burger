@@ -4,15 +4,14 @@ import { ingredientSlice } from './slices/ingredientSlice';
 import { constructorBurgerSlice } from './slices/constructorBurgerSlice';
 import { orderSlice } from './slices/orderSlice';
 import { feedsSlice } from './slices/feedSlice';
-import * as burgerApi from '@api';
-
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
+import * as burgerApi from '../utils/burger-api';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   [userSlice.reducerPath]: userSlice.reducer,
   [ingredientSlice.reducerPath]: ingredientSlice.reducer,
   [constructorBurgerSlice.reducerPath]: constructorBurgerSlice.reducer,

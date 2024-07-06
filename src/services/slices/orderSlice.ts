@@ -3,7 +3,7 @@ import { TOrderResponse, TNewOrderResponse } from '../../utils/burger-api';
 import * as burgerApi from '@api';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-type OrderState = {
+export type OrderState = {
   order: TOrder | null;
   orders: TOrder[];
   modalOrder: TOrder | null;
@@ -92,4 +92,5 @@ export const {
   selectModalOrder,
   selectOrderRequest
 } = orderSlice.selectors;
+export const orderReducer = orderSlice.reducer;
 export default orderSlice;

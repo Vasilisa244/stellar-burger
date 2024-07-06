@@ -1,7 +1,8 @@
 import { TIngredient, TConstructorIngredient } from '@utils-types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
-type ConstructorBurgerState = {
+export type ConstructorBurgerState = {
   constructorItems: {
     bun: TIngredient | null;
     ingredients: TConstructorIngredient[];
@@ -69,4 +70,5 @@ export const {
   clearBasket
 } = constructorBurgerSlice.actions;
 export const { selectConstructorBurger } = constructorBurgerSlice.selectors;
+export const constructorBurgerReducer = constructorBurgerSlice.reducer;
 export default constructorBurgerSlice;
