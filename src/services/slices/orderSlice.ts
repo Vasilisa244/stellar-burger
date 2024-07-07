@@ -10,7 +10,7 @@ export type OrderState = {
   orderRequest: boolean;
 };
 
-const initialState: OrderState = {
+export const initialState: OrderState = {
   order: null,
   orders: [],
   modalOrder: null,

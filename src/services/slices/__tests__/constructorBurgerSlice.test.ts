@@ -1,5 +1,6 @@
 import {
   ConstructorBurgerState,
+  initialState,
   addIngredient,
   deleteIngredient,
   moveItUpIngredient,
@@ -52,13 +53,6 @@ const ingredient2 = {
 };
 
 describe('Тест работы слайса конструктора ', () => {
-  const initialState: ConstructorBurgerState = {
-    constructorItems: {
-      bun: null,
-      ingredients: []
-    }
-  };
-
   it('Тест обработки экшена добавления булки', () => {
     const currentState = constructorBurgerReducer(
       initialState,
@@ -100,7 +94,7 @@ describe('Тест работы слайса конструктора ', () => {
   });
 
   it('Тест обработки экшена изменения порядка начинки вверх', () => {
-    const initialState: ConstructorBurgerState = {
+    const testInitialState: ConstructorBurgerState = {
       constructorItems: {
         bun: null,
         ingredients: [
@@ -111,7 +105,7 @@ describe('Тест работы слайса конструктора ', () => {
     };
 
     const currentState = constructorBurgerReducer(
-      initialState,
+      testInitialState,
       moveItUpIngredient(1)
     );
 
@@ -122,7 +116,7 @@ describe('Тест работы слайса конструктора ', () => {
   });
 
   it('Тест обработки экшена изменения порядка начинки вниз', () => {
-    const initialState: ConstructorBurgerState = {
+    const testInitialState: ConstructorBurgerState = {
       constructorItems: {
         bun: null,
         ingredients: [
@@ -133,7 +127,7 @@ describe('Тест работы слайса конструктора ', () => {
     };
 
     const currentState = constructorBurgerReducer(
-      initialState,
+      testInitialState,
       moveDownIngredient(0)
     );
 

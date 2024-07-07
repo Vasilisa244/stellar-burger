@@ -1,5 +1,5 @@
 import {
-  IngredientState,
+  initialState,
   fetchIngredient,
   ingredientReducer
 } from '../ingredientSlice';
@@ -50,11 +50,6 @@ const ingredientsState = [
 ];
 
 describe('Тест работы слайса ингредиентов', () => {
-  const initialState: IngredientState = {
-    ingredients: [],
-    selectIngredient: null
-  };
-
   it('Тест обновления состояния ингредиентов после успешного выполнения fetchIngredient', () => {
     const currentState = ingredientReducer(
       {

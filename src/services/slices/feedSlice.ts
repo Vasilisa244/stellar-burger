@@ -3,13 +3,13 @@ import { TFeedsResponse } from '../../utils/burger-api';
 import * as burgerApi from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export type FeedsState = {
+type FeedsState = {
   total: number | null;
   orders: TOrder[];
   totalToday: number | null;
 };
 
-const initialState: FeedsState = {
+export const initialState: FeedsState = {
   total: 0,
   orders: [],
   totalToday: 0

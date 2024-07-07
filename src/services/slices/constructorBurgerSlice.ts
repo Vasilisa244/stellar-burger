@@ -9,7 +9,7 @@ export type ConstructorBurgerState = {
   };
 };
 
-const initialState: ConstructorBurgerState = {
+export const initialState: ConstructorBurgerState = {
   constructorItems: {
     bun: null,
     ingredients: []

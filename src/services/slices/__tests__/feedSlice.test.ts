@@ -1,4 +1,4 @@
-import { fetchFeeds, FeedsState, feedReducer } from '../feedSlice';
+import { fetchFeeds, initialState, feedReducer } from '../feedSlice';
 
 const feedsData = {
   success: true,
@@ -45,12 +45,6 @@ const feedsData = {
 };
 
 describe('Тест работы слайса ленты заказов', () => {
-  const initialState: FeedsState = {
-    total: 0,
-    orders: [],
-    totalToday: 0
-  };
-
   it('Тест обновления состояния заказов, общего количества и количества за сегодня после успешного выполнения fetchFeeds', () => {
     const currentState = feedReducer(
       { ...initialState },

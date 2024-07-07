@@ -1,5 +1,5 @@
 import {
-  UserState,
+  initialState,
   checkUserAuth,
   fetchLogin,
   fetchRegisterUser,
@@ -24,11 +24,6 @@ const testLoginUser = {
 };
 
 describe('Тестирование работы слайса пользователя', () => {
-  const initialState: UserState = {
-    user: null,
-    isAuthChecked: false
-  };
-
   it('Тест загрузки данных о заказе при успешном выполнении checkUserAuth', () => {
     const currentState = userReducer(
       {

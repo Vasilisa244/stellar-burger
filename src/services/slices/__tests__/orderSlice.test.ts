@@ -1,5 +1,5 @@
 import {
-  OrderState,
+  initialState,
   fetchOrderNumber,
   fetchNewOrder,
   fetchOrders,
@@ -72,13 +72,6 @@ const testUserOrder = {
 const testIngredients = ['1111', '2222', '3333'];
 
 describe('Тестирование работы слайса заказов пользователя', () => {
-  const initialState: OrderState = {
-    order: null,
-    orders: [],
-    modalOrder: null,
-    orderRequest: false
-  };
-
   it('Тест загрузки данных о заказе при успешном выполнении fetchOrderNumber', () => {
     const currentState = orderReducer(
       {
