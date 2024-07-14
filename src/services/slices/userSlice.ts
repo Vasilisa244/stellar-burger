@@ -15,12 +15,12 @@ import {
 import * as burgerApi from '@api';
 import { deleteCookie, setCookie } from '../../utils/cookie';
 
-type UserState = {
+export type UserState = {
   user: TUser | null;
   isAuthChecked: boolean;
 };
 
-const initialState: UserState = {
+export const initialState: UserState = {
   user: null,
   isAuthChecked: false
 };
@@ -110,4 +110,5 @@ export const userSlice = createSlice({
 
 export const { authChecked } = userSlice.actions;
 export const { selectUserData, selectIsUserChecked } = userSlice.selectors;
+export const userReducer = userSlice.reducer;
 export default userSlice;

@@ -1,7 +1,7 @@
 import { TOrder, TOrdersData } from '@utils-types';
 import { TFeedsResponse } from '../../utils/burger-api';
 import * as burgerApi from '@api';
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 type FeedsState = {
   total: number | null;
@@ -9,7 +9,7 @@ type FeedsState = {
   totalToday: number | null;
 };
 
-const initialState: FeedsState = {
+export const initialState: FeedsState = {
   total: 0,
   orders: [],
   totalToday: 0
@@ -52,4 +52,5 @@ export const feedsSlice = createSlice({
 export const { clearOrders } = feedsSlice.actions;
 export const { selectTotal, selectOrders, selectTotalToday } =
   feedsSlice.selectors;
+export const feedReducer = feedsSlice.reducer;
 export default feedsSlice;

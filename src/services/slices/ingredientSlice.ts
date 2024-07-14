@@ -3,12 +3,12 @@ import * as burgerApi from '@api';
 import { TIngredient } from '@utils-types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-type IngredientState = {
+export type IngredientState = {
   ingredients: TIngredient[];
   selectIngredient: TIngredient | null;
 };
 
-const initialState: IngredientState = {
+export const initialState: IngredientState = {
   ingredients: [],
   selectIngredient: null
 };
@@ -50,4 +50,5 @@ export const ingredientSlice = createSlice({
 export const { setIngredient } = ingredientSlice.actions;
 export const { selectIngredients, selectIngredient } =
   ingredientSlice.selectors;
+export const ingredientReducer = ingredientSlice.reducer;
 export default ingredientSlice;
